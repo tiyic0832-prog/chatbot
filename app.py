@@ -425,12 +425,11 @@ with st.sidebar:
             "created": datetime.now().strftime("%Y-%m-%d %H:%M"),
             "messages": []
         }
-        st.session_state.sessions[sid] = new_data
-        save_session(sid, new_data)
+        st.session_state.sessions[sid] = new_data  # ✅ memory mein rakho
         st.session_state.active_id = sid
         st.session_state.rename_id = None
         st.session_state.menu_open = None
-        st.rerun()
+        st.rerun()    
     st.markdown('</div>', unsafe_allow_html=True)
     st.markdown("---")
 
@@ -498,7 +497,6 @@ if st.session_state.active_id is None:
         "messages": []
     }
     st.session_state.sessions[sid] = new_data
-    save_session(sid, new_data)
     st.session_state.active_id = sid
     st.rerun()
 
