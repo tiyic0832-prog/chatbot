@@ -293,7 +293,10 @@ from supabase import create_client
 
 # ── Clients ───────────────────────────────────────────────────────────────────
 try:
-    client = anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
+    client = anthropic.Anthropic(
+        api_key=st.secrets["ANTHROPIC_API_KEY"],
+        base_url=st.secrets["ANTHROPIC_BASE_URL"]
+    )
 except Exception as e:
     st.error("❌ Anthropic API Key missing. Check your secrets.")
     st.stop()
@@ -304,7 +307,7 @@ except Exception as e:
     st.error("❌ Supabase connection failed. Check your secrets.")
     st.stop()
 
-MODEL = "claude-sonnet-4-6"
+MODEL = st.secrets["ANTHROPIC_MODEL"]
 
 SYSTEM_PROMPT = """You are Claude, an AI assistant made by Anthropic. You are helpful, harmless, and honest.
 Answer questions thoroughly and accurately.
